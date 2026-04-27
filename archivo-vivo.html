@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archivo Vivo — Con la Sal en la Piel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <main class="screen">
+
+    <!-- Fondo fotográfico -->
+    <div
+      class="screen__bg screen__bg--dark"
+      style="background-image: url('IMAGENES/HOJA 4/4M - VIDEO.00_22_09_04.Imagen fija018.png');"
+    ></div>
+
+    <!-- Logo esquina superior derecha — clickeable al home -->
+    <a href="index.html" class="logo-corner" aria-label="Volver al inicio">
+      <p class="label">Web Doc Interactivo</p>
+      <div class="title-stack">
+        <span class="line1">CON LA <span style="font-size:1.15em;">SAL</span></span><br>
+        <span class="line2">EN LA <span class="italic">PIEL</span></span>
+      </div>
+      <p class="subtitle">Artivismo en el Atlanticazo</p>
+    </a>
+
+    <!-- Contenido principal -->
+    <div class="screen__content">
+      <div class="section-index__inner">
+
+        <!-- Header: título + links secundarios -->
+        <div class="section-index__header">
+          <h2 class="section-index__label">Archivo Vivo</h2>
+          <div style="display:flex; flex-direction:column; gap:6px; align-self:flex-end;">
+            <a href="serie.html" class="section-index__sub-link">
+              Serie <span>›</span>
+            </a>
+            <a href="#participar" class="section-index__sub-link">
+              Archivo Vivo ¿Te Sumás? <span>›</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- Área del carrusel -->
+        <div class="section-index__carousel-area">
+
+          <!-- Carrusel de categorías -->
+          <div class="carousel-wrapper">
+            <div class="carousel-track" id="archivo-carousel">
+
+              <!-- Categoría disponible -->
+              <a href="archivo-vivo-candombe.html" class="carousel-card">
+                <img
+                  src="IMAGENES/HOJA 3/Primer Asamblea.01_32_23_22.Imagen fija045.png"
+                  alt="Candombe"
+                />
+                <div class="card-label">Candombe</div>
+              </a>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/HOJA 4/Primer Asamblea.00_17_57_18.Imagen fija006.png"
+                  alt="Copleras"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Copleras</div>
+              </div>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/HOJA 4/4M - VIDEO.00_22_09_04.Imagen fija018.png"
+                  alt="Cultura Africana"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">
+                  <span class="card-sublabel">Cultura</span>
+                  Africana
+                </div>
+              </div>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/HOJA 4/4J - TOTAL CRUDO.00_04_50_09.Imagen fija001.png"
+                  alt="Teatro"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Teatro</div>
+              </div>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/HOJA 4/4J - TOTAL CRUDO.00_20_21_06.Imagen fija005.png"
+                  alt="Happening"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Happening</div>
+              </div>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/NANI 2.png"
+                  alt="Audiovisual"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Audiovisual</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Murga</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Poesía</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Danza</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Muralismo</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Circo</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Fotografía</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Instalación</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Performance</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Narrativa</div>
+              </div>
+
+            </div>
+
+            <!-- Flechas laterales absolutas -->
+            <button class="carousel-btn" data-carousel="archivo-carousel" data-dir="-1" aria-label="Anterior">‹</button>
+            <button class="carousel-btn" data-carousel="archivo-carousel" data-dir="1" aria-label="Siguiente">›</button>
+          </div>
+
+          <!-- Dots de posición -->
+          <div class="carousel-dots" id="archivo-dots"></div>
+
+          <!-- Descripción -->
+          <p class="section-description">
+            El archivo vivo es una plataforma digital abierta y colaborativa que invita a la
+            comunidad a subir y compartir sus propios registros, fotografías, videos, audios,
+            textos o piezas artísticas, sobre el movimiento. Más que un repositorio, funciona
+            como un espacio en construcción permanente donde la memoria colectiva se produce,
+            circula y se mantiene activa en diálogo con el presente.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones sociales flotantes -->
+    <div class="social-floating">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="IMAGENES/HOJA 1/INSTA.png" alt="Instagram" />
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="IMAGENES/HOJA 1/Sin título-1.png" alt="Facebook" />
+      </a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">
+        <img src="IMAGENES/HOJA 1/TIK TOK.png" alt="TikTok" />
+      </a>
+      <a href="#" target="_blank" rel="noopener" aria-label="No al Extractivismo">
+        <img src="IMAGENES/HOJA 1/images.png" alt="No al extractivismo" />
+      </a>
+    </div>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Archivo Vivo — Candombe — Con la Sal en la Piel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="has-bottom-nav">
+
+  <main class="screen">
+
+    <!-- Fondo fotográfico -->
+    <div
+      class="screen__bg"
+      style="background-image: url('IMAGENES/HOJA 4/Primer Asamblea.00_29_05_20.Imagen fija014.png'); background-position: center top;"
+    ></div>
+
+    <!-- Logo esquina superior derecha — clickeable al home -->
+    <a href="index.html" class="logo-corner" aria-label="Volver al inicio">
+      <p class="label">Web Doc Interactivo</p>
+      <div class="title-stack">
+        <span class="line1">CON LA <span style="font-size:1.15em;">SAL</span></span><br>
+        <span class="line2">EN LA <span class="italic">PIEL</span></span>
+      </div>
+      <p class="subtitle">Artivismo en el Atlanticazo</p>
+    </a>
+
+    <!-- Contenido principal -->
+    <div class="screen__content">
+      <div class="archive-detail__inner">
+
+        <!-- Columna izquierda: navegación de categoría -->
+        <div class="archive-detail__left">
+          <span class="archive-detail__section">Archivo Vivo</span>
+          <h2 class="archive-detail__cat">Candombe</h2>
+          <nav class="archive-detail__nav">
+            <a href="#fotografia" class="archive-detail__nav-link">
+              Fotografía <span>›</span>
+            </a>
+            <a href="#videos" class="archive-detail__nav-link">
+              Videos <span>›</span>
+            </a>
+            <a href="#crear" class="archive-detail__nav-link">
+              Crear Categoría <span>›</span>
+            </a>
+          </nav>
+        </div>
+
+        <!-- Columna derecha: galería -->
+        <div class="archive-detail__right">
+
+          <!-- Imagen destacada -->
+          <div class="archive-detail__featured" id="fotografia">
+            <img
+              src="IMAGENES/HOJA 4/Primer Asamblea.00_17_57_18.Imagen fija006.png"
+              alt="Candombe — Archivo Vivo"
+              id="featured-img"
+            />
+          </div>
+
+          <!-- Tira de thumbnails -->
+          <div class="archive-detail__thumbs" id="videos">
+            <div class="archive-detail__thumb" onclick="setFeatured('IMAGENES/HOJA 4/Primer Asamblea.-1.png')">
+              <img src="IMAGENES/HOJA 4/Primer Asamblea.-1.png" alt="Registro 1" />
+            </div>
+            <div class="archive-detail__thumb" onclick="setFeatured('IMAGENES/HOJA 4/Primer Asamblea.-2.png')">
+              <img src="IMAGENES/HOJA 4/Primer Asamblea.-2.png" alt="Registro 2" />
+            </div>
+            <div class="archive-detail__thumb" onclick="setFeatured('IMAGENES/HOJA 4/Primer Asamblea.-3.png')">
+              <img src="IMAGENES/HOJA 4/Primer Asamblea.-3.png" alt="Registro 3" />
+            </div>
+            <div class="archive-detail__thumb" onclick="setFeatured('IMAGENES/HOJA 4/Con la Sal en la Piel - Piloto V1 - Con color PRO.00_05_06_14.Imagen fija014.png')">
+              <img src="IMAGENES/HOJA 4/Con la Sal en la Piel - Piloto V1 - Con color PRO.00_05_06_14.Imagen fija014.png" alt="Registro 4" />
+            </div>
+            <div class="archive-detail__thumb" onclick="setFeatured('IMAGENES/HOJA 4/PNG CARRUSEL.png')">
+              <img src="IMAGENES/HOJA 4/PNG CARRUSEL.png" alt="Registro 5" />
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Barra de navegación inferior -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav__left">
+        <a href="serie.html">Serie <span>›</span></a>
+        <a href="archivo-vivo.html">Archivo Vivo ¿Te Sumás? <span>›</span></a>
+      </div>
+    </nav>
+
+    <!-- Botones sociales flotantes -->
+    <div class="social-floating">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="IMAGENES/HOJA 1/INSTA.png" alt="Instagram" />
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="IMAGENES/HOJA 1/Sin título-1.png" alt="Facebook" />
+      </a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">
+        <img src="IMAGENES/HOJA 1/TIK TOK.png" alt="TikTok" />
+      </a>
+      <a href="#" target="_blank" rel="noopener" aria-label="No al Extractivismo">
+        <img src="IMAGENES/HOJA 1/images.png" alt="No al extractivismo" />
+      </a>
+    </div>
+
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    function setFeatured(src) {
+      var img = document.getElementById('featured-img');
+      img.style.opacity = '0';
+      setTimeout(function() {
+        img.src = src;
+        img.style.transition = 'opacity 0.3s ease';
+        img.style.opacity = '1';
+      }, 200);
+    }
+  </script>
+</body>
+</html>

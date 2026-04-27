@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Candombe — Episodio 1 — Con la Sal en la Piel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body class="has-bottom-nav">
+
+  <main class="screen">
+
+    <!-- Fondo fotográfico -->
+    <div
+      class="screen__bg"
+      style="background-image: url('IMAGENES/HOJA 5/Con la Sal en la Piel - Piloto V1 - Con color PRO.00_20_24_08.Imagen fija006.png');"
+    ></div>
+
+    <!-- Logo esquina superior derecha — clickeable al home -->
+    <a href="index.html" class="logo-corner" aria-label="Volver al inicio">
+      <p class="label">Web Doc Interactivo</p>
+      <div class="title-stack">
+        <span class="line1">CON LA <span style="font-size:1.15em;">SAL</span></span><br>
+        <span class="line2">EN LA <span class="italic">PIEL</span></span>
+      </div>
+      <p class="subtitle">Artivismo en el Atlanticazo</p>
+    </a>
+
+    <!-- Contenido principal -->
+    <div class="screen__content">
+      <div class="episode__inner">
+
+        <!-- Lado izquierdo: meta + descripción -->
+        <div class="episode__meta">
+          <h2 class="episode__category">Candombe</h2>
+          <p class="episode__number">Episodio 1</p>
+          <p class="episode__description">
+            El candombe, con sus raíces afro-rioplatenses, fue pulso y motor de las marchas del
+            Atlanticazo en Mar del Plata. A través del tambor, la calle se volvió ritual y
+            resistencia, entrelazando memoria, identidad y denuncia. Más que acompañar, el
+            candombe abrió camino, marcando el ritmo de una marea que defendía el mar con
+            el arte como bandera.
+          </p>
+        </div>
+
+        <!-- Lado derecho: Reproductor de video -->
+        <div class="episode__player" id="player-candombe">
+          <img
+            class="episode__thumb"
+            src="IMAGENES/HOJA 5/Con la Sal en la Piel - Piloto V1 - Con color PRO.00_04_36_18.Imagen fija004.png"
+            alt="Video Candombe — Con la Sal en la Piel"
+            id="thumb-candombe"
+          />
+          <div class="episode__play-overlay" id="play-candombe" onclick="playVideo('candombe','kqF6LX30_Ag')">
+            <svg viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg">
+              <circle cx="40" cy="40" r="40" fill="rgba(0,0,0,0.4)"/>
+              <polygon points="30,20 62,40 30,60" fill="white"/>
+            </svg>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Barra de navegación inferior -->
+    <nav class="bottom-nav">
+      <div class="bottom-nav__left">
+        <a href="serie.html">Serie <span>›</span></a>
+        <a href="archivo-vivo.html">Archivo Vivo ¿Te Sumás? <span>›</span></a>
+      </div>
+      <a href="episodio-copleras.html" class="next-ep">Próximo Episodio <span>»</span></a>
+    </nav>
+
+    <!-- Botones sociales flotantes -->
+    <div class="social-floating">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="IMAGENES/HOJA 1/INSTA.png" alt="Instagram" />
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="IMAGENES/HOJA 1/Sin título-1.png" alt="Facebook" />
+      </a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">
+        <img src="IMAGENES/HOJA 1/TIK TOK.png" alt="TikTok" />
+      </a>
+      <a href="#" target="_blank" rel="noopener" aria-label="No al Extractivismo">
+        <img src="IMAGENES/HOJA 1/images.png" alt="No al extractivismo" />
+      </a>
+    </div>
+
+  </main>
+
+  <script src="js/main.js"></script>
+  <script>
+    function playVideo(id, ytId) {
+      var container = document.getElementById('player-' + id);
+      var thumb = document.getElementById('thumb-' + id);
+      var overlay = document.getElementById('play-' + id);
+      thumb.style.display = 'none';
+      overlay.style.display = 'none';
+      var iframe = document.createElement('iframe');
+      iframe.src = 'https://www.youtube.com/embed/' + ytId + '?autoplay=1&rel=0';
+      iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture';
+      iframe.allowFullscreen = true;
+      iframe.style.width = '100%';
+      iframe.style.height = '100%';
+      iframe.style.border = 'none';
+      container.appendChild(iframe);
+    }
+  </script>
+</body>
+</html>

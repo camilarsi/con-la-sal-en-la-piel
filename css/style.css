@@ -1,0 +1,934 @@
+/* ============================================
+   CON LA SAL EN LA PIEL — Estilos Globales
+   ============================================ */
+
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:ital,wght@0,400;0,500;0,600;0,700;1,700&display=swap');
+
+/* Reset */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --font-title: 'Bebas Neue', sans-serif;
+  --font-body: 'Montserrat', sans-serif;
+  --color-bg: #0a0a0a;
+  --color-white: #ffffff;
+  --color-overlay: rgba(0, 0, 0, 0.45);
+  --color-overlay-deep: rgba(0, 0, 0, 0.82);
+  --transition: 0.25s ease;
+}
+
+html, body {
+  height: 100%;
+  font-family: var(--font-body);
+  background: var(--color-bg);
+  color: var(--color-white);
+  overflow-x: hidden;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+}
+
+/* ============================================
+   PANTALLA COMPLETA — base de cada página
+   ============================================ */
+.screen {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.screen__bg {
+  position: absolute;
+  inset: 0;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  z-index: 0;
+}
+
+.screen__bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--color-overlay);
+}
+
+.screen__bg--dark::after {
+  background: var(--color-overlay-deep);
+}
+
+/* Animación de entrada */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(18px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.screen__content {
+  position: relative;
+  z-index: 1;
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  /* padding-right: 82px deja espacio libre para los botones flotantes (right:20px + width:42px + 20px holgura) */
+  padding: 40px 82px 100px 60px;
+  animation: fadeInUp 0.5s ease both;
+}
+
+/* ============================================
+   BOTONES SOCIALES FLOTANTES (lateral derecho)
+   ============================================ */
+.social-floating {
+  position: fixed;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 100;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.social-floating a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  transition: background var(--transition), transform var(--transition), border-color var(--transition);
+}
+
+.social-floating a:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.12);
+}
+
+.social-floating a img {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* ============================================
+   LOGO (esquina superior derecha en páginas interiores)
+   ============================================ */
+.logo-corner {
+  position: absolute;
+  top: 30px;
+  right: 90px; /* desplazado para no solapar los botones flotantes */
+  z-index: 10;
+  text-align: center;
+  text-decoration: none;
+  color: var(--color-white);
+  transition: opacity var(--transition);
+}
+
+.logo-corner:hover {
+  opacity: 0.8;
+}
+
+.logo-corner .label {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-white);
+  margin-bottom: 2px;
+}
+
+.logo-corner .title-stack {
+  font-family: var(--font-title);
+  line-height: 0.88;
+}
+
+.logo-corner .title-stack .line1 {
+  font-size: 2.2rem;
+  letter-spacing: 0.03em;
+}
+
+.logo-corner .title-stack .line2 {
+  font-size: 2.2rem;
+  letter-spacing: 0.03em;
+}
+
+.logo-corner .title-stack .italic {
+  font-style: italic;
+}
+
+.logo-corner .subtitle {
+  font-family: var(--font-body);
+  font-size: 0.5rem;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* ============================================
+   PÁGINA 1 — HOME / HERO
+   ============================================ */
+.home__inner {
+  flex: 1;
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  align-items: center;
+  gap: 40px;
+}
+
+.home__left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.home__center {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.home__label {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.home__title {
+  font-family: var(--font-title);
+  line-height: 0.88;
+  margin-bottom: 20px;
+}
+
+.home__title .line-big {
+  font-size: clamp(4rem, 8vw, 8rem);
+  display: block;
+}
+
+.home__title .line-italic {
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-style: italic;
+  display: block;
+}
+
+.home__subtitle {
+  font-family: var(--font-body);
+  font-size: clamp(0.7rem, 1.2vw, 1rem);
+  font-weight: 500;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+}
+
+.home__right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 30px;
+}
+
+.home__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.home__nav-link {
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.5rem);
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: opacity var(--transition);
+}
+
+.home__nav-link:hover {
+  opacity: 0.75;
+}
+
+.home__nav-link .arrow {
+  font-size: 1.2em;
+  font-weight: 400;
+}
+
+.home__video-card {
+  width: 100%;
+  max-width: 100%;
+  border-radius: 14px;
+  overflow: hidden;
+  position: relative;
+  aspect-ratio: 16/9;
+  cursor: pointer;
+}
+
+.home__video-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.home__video-card .play-btn {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.25);
+  transition: background var(--transition);
+}
+
+.home__video-card .play-btn:hover {
+  background: rgba(0,0,0,0.4);
+}
+
+.home__video-card .play-btn svg {
+  width: 64px;
+  height: 64px;
+  fill: rgba(255,255,255,0.9);
+}
+
+/* ============================================
+   PÁGINA 2 — SOBRE EL PROYECTO
+   ============================================ */
+.about__inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.about__top {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+.about__location {
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  letter-spacing: 0.08em;
+}
+
+.about__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: auto;
+  padding-top: 40px;
+}
+
+.about__nav-link {
+  font-family: var(--font-body);
+  font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: opacity var(--transition);
+}
+
+.about__nav-link:hover {
+  opacity: 0.75;
+}
+
+.about__bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 40px;
+  margin-top: 30px;
+  align-items: flex-end;
+}
+
+.about__description {
+  font-family: var(--font-body);
+  font-size: clamp(0.7rem, 1.1vw, 0.9rem);
+  line-height: 1.65;
+  font-weight: 400;
+}
+
+.about__logo {
+  text-align: right;
+}
+
+/* ============================================
+   PÁGINAS 3 & 6 — SERIE / ARCHIVO VIVO (index)
+   Layout: columna única, carrusel al centro
+   ============================================ */
+.section-index__inner {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+/* Header de sección: título + link secundario, arriba-izquierda */
+.section-index__header {
+  display: flex;
+  align-items: baseline;
+  gap: 24px;
+  margin-bottom: 20px;
+  flex-shrink: 0;
+}
+
+.section-index__label {
+  font-family: var(--font-title);
+  font-size: clamp(2.5rem, 5vw, 5rem);
+  line-height: 1;
+}
+
+.section-index__sub-link {
+  font-family: var(--font-body);
+  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  transition: opacity var(--transition);
+  opacity: 0.75;
+}
+
+.section-index__sub-link:hover { opacity: 1; }
+
+/* Área del carrusel: crece para ocupar todo el espacio disponible */
+.section-index__carousel-area {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  min-height: 0;
+}
+
+/* ============================================
+   CARRUSEL — scroll nativo, siempre centrado
+   ============================================ */
+.carousel-wrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  padding: 0 52px;
+}
+
+.carousel-track {
+  display: flex;
+  gap: clamp(10px, 1.5vw, 18px);
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+/* Card: tamaño responsivo con clamp */
+.carousel-card {
+  flex: 0 0 clamp(140px, 18vw, 220px);
+  height: clamp(200px, 38vh, 380px);
+  border-radius: 16px;
+  overflow: hidden;
+  position: relative;
+  cursor: pointer;
+  transition: transform var(--transition), opacity var(--transition), box-shadow var(--transition);
+  text-decoration: none;
+  color: var(--color-white);
+}
+
+.carousel-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+}
+
+.carousel-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.carousel-card .card-label {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 14px 12px 10px;
+  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  font-family: var(--font-title);
+  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
+  letter-spacing: 0.06em;
+  text-align: center;
+}
+
+.carousel-card .card-sublabel {
+  font-family: var(--font-body);
+  font-size: 0.55rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  text-align: center;
+  display: block;
+  opacity: 0.8;
+}
+
+/* Card deshabilitada — episodios no disponibles */
+.carousel-card--disabled {
+  opacity: 0.42;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.carousel-card--disabled .card-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(0, 0, 0, 0.65);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 6px;
+  padding: 2px 8px;
+  font-family: var(--font-title);
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: rgba(255,255,255,0.7);
+}
+
+/* Flechas del carrusel — absolutas, laterales */
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 5;
+  background: rgba(255, 255, 255, 0.12);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 50%;
+  width: 42px;
+  height: 42px;
+  color: white;
+  font-size: 1.4rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: background var(--transition), transform var(--transition), border-color var(--transition);
+  padding: 0;
+  flex-shrink: 0;
+}
+
+.carousel-btn:hover {
+  background: rgba(255, 255, 255, 0.28);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: translateY(-50%) scale(1.1);
+}
+
+.carousel-btn[data-dir="-1"] { left: 0; }
+.carousel-btn[data-dir="1"]  { right: 0; }
+
+/* Dots de posición */
+.carousel-dots {
+  display: flex;
+  justify-content: center;
+  gap: 7px;
+  margin-top: 14px;
+  flex-shrink: 0;
+}
+
+.carousel-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.35);
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  transition: background var(--transition), transform var(--transition);
+}
+
+.carousel-dot.is-active {
+  background: rgba(255, 255, 255, 0.9);
+  transform: scale(1.35);
+}
+
+/* Descripción debajo del carrusel, centrada */
+.section-description {
+  margin-top: 18px;
+  font-family: var(--font-body);
+  font-size: clamp(0.65rem, 1vw, 0.82rem);
+  line-height: 1.7;
+  text-align: center;
+  max-width: 680px;
+  margin-left: auto;
+  margin-right: auto;
+  flex-shrink: 0;
+}
+
+/* ============================================
+   PÁGINAS 4 & 5 — EPISODIO
+   ============================================ */
+.episode__inner {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 40px;
+  align-items: center;
+}
+
+.episode__meta {
+  display: flex;
+  flex-direction: column;
+}
+
+.episode__category {
+  font-family: var(--font-title);
+  font-size: clamp(1.5rem, 3vw, 2.8rem);
+  letter-spacing: 0.05em;
+  line-height: 1;
+}
+
+.episode__number {
+  font-family: var(--font-body);
+  font-size: 0.75rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.episode__description {
+  font-family: var(--font-body);
+  font-size: clamp(0.65rem, 1vw, 0.8rem);
+  line-height: 1.7;
+}
+
+.episode__player {
+  border-radius: 16px;
+  overflow: hidden;
+  aspect-ratio: 16/9;
+  background: #111;
+  position: relative;
+}
+
+.episode__player iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+/* Próximamente overlay */
+.coming-soon-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.5);
+}
+
+.coming-soon-overlay span {
+  font-family: var(--font-title);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  letter-spacing: 0.08em;
+}
+
+/* Thumbnail clickable en lugar de iframe */
+.episode__thumb {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  cursor: pointer;
+}
+
+.episode__play-overlay {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0,0,0,0.2);
+  cursor: pointer;
+  transition: background var(--transition);
+}
+
+.episode__play-overlay:hover {
+  background: rgba(0,0,0,0.35);
+}
+
+.episode__play-overlay svg {
+  width: 72px;
+  height: 72px;
+  fill: rgba(255,255,255,0.92);
+}
+
+/* ============================================
+   PÁGINA 7 — ARCHIVO VIVO DETALLE
+   ============================================ */
+.archive-detail__inner {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 220px 1fr;
+  gap: 40px;
+  align-items: start;
+  padding-top: 20px;
+}
+
+.archive-detail__left {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.archive-detail__section {
+  font-family: var(--font-title);
+  font-size: 1.4rem;
+  letter-spacing: 0.06em;
+}
+
+.archive-detail__cat {
+  font-family: var(--font-title);
+  font-size: 2.2rem;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  margin-bottom: 10px;
+}
+
+.archive-detail__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.archive-detail__nav-link {
+  font-family: var(--font-body);
+  font-size: 0.85rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity var(--transition);
+}
+
+.archive-detail__nav-link:hover { opacity: 0.72; }
+
+.archive-detail__right {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.archive-detail__featured {
+  border-radius: 16px;
+  overflow: hidden;
+  max-height: 320px;
+}
+
+.archive-detail__featured img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.archive-detail__thumbs {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  padding-bottom: 6px;
+}
+
+.archive-detail__thumbs::-webkit-scrollbar { height: 4px; }
+.archive-detail__thumbs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 2px; }
+
+.archive-detail__thumb {
+  flex: 0 0 100px;
+  height: 70px;
+  border-radius: 10px;
+  overflow: hidden;
+  cursor: pointer;
+  transition: opacity var(--transition);
+}
+
+.archive-detail__thumb:hover { opacity: 0.8; }
+
+.archive-detail__thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* ============================================
+   BARRA DE NAVEGACIÓN INFERIOR (episodios)
+   ============================================ */
+.bottom-nav {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 40px;
+  padding: 14px 60px;
+  background: rgba(0,0,0,0.6);
+}
+
+.bottom-nav__left {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.bottom-nav a {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  transition: opacity var(--transition);
+}
+
+.bottom-nav a:hover { opacity: 0.7; }
+
+.bottom-nav .next-ep {
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+/* ============================================
+   UTILIDADES
+   ============================================ */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 900px) {
+  .screen__content {
+    /* en tablet los botones flotantes son más pequeños, 66px alcanza */
+    padding: 30px 66px 90px 28px;
+  }
+
+
+  .home__inner {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .home__center {
+    align-items: center;
+  }
+
+  .home__right {
+    align-items: center;
+  }
+
+  .about__bottom {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .episode__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .archive-detail__inner {
+    grid-template-columns: 1fr;
+  }
+
+  .logo-corner {
+    top: 16px;
+    right: 70px;
+  }
+
+  .logo-corner .title-stack .line1,
+  .logo-corner .title-stack .line2 {
+    font-size: 1.4rem;
+  }
+
+  .bottom-nav {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding: 10px 20px;
+  }
+
+  .section-index__header {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .carousel-wrapper {
+    padding: 0 44px;
+  }
+}
+
+@media (max-width: 600px) {
+  .screen__content {
+    /* en mobile los botones flotantes se ocultan (.has-bottom-nav) o son pequeños */
+    padding: 20px 56px 80px 16px;
+  }
+
+
+  .home__title .line-big,
+  .home__title .line-italic {
+    font-size: clamp(3rem, 13vw, 5rem);
+  }
+
+  /* En mobile con bottom-nav, ocultar los flotantes sociales para evitar conflictos */
+  .has-bottom-nav .social-floating {
+    display: none;
+  }
+
+  .social-floating {
+    right: 10px;
+    gap: 8px;
+  }
+
+  .social-floating a {
+    width: 36px;
+    height: 36px;
+  }
+
+  .social-floating a img {
+    width: 22px;
+    height: 22px;
+  }
+
+  .carousel-wrapper {
+    padding: 0 40px;
+  }
+}

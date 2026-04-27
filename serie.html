@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Serie — Con la Sal en la Piel</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+
+  <main class="screen">
+
+    <!-- Fondo fotográfico — plano abierto de multitud -->
+    <div
+      class="screen__bg screen__bg--dark"
+      style="background-image: url('IMAGENES/HOJA 1/Primer Asamblea.00_13_48_18.Imagen fija008.png');"
+    ></div>
+
+    <!-- Logo esquina superior derecha — clickeable al home -->
+    <a href="index.html" class="logo-corner" aria-label="Volver al inicio">
+      <p class="label">Web Doc Interactivo</p>
+      <div class="title-stack">
+        <span class="line1">CON LA <span style="font-size:1.15em;">SAL</span></span><br>
+        <span class="line2">EN LA <span class="italic">PIEL</span></span>
+      </div>
+      <p class="subtitle">Artivismo en el Atlanticazo</p>
+    </a>
+
+    <!-- Contenido principal -->
+    <div class="screen__content">
+      <div class="section-index__inner">
+
+        <!-- Header: título + link secundario -->
+        <div class="section-index__header">
+          <h2 class="section-index__label">Serie</h2>
+          <a href="archivo-vivo.html" class="section-index__sub-link">
+            Archivo Vivo <span>›</span>
+          </a>
+        </div>
+
+        <!-- Área del carrusel: ocupa todo el espacio restante -->
+        <div class="section-index__carousel-area">
+
+          <!-- Carrusel de episodios -->
+          <div class="carousel-wrapper">
+            <div class="carousel-track" id="serie-carousel">
+
+              <!-- Episodio disponible -->
+              <a href="episodio-candombe.html" class="carousel-card">
+                <img
+                  src="IMAGENES/HOJA 3/Primer Asamblea.01_32_23_22.Imagen fija045.png"
+                  alt="Candombe"
+                />
+                <div class="card-label">Candombe</div>
+              </a>
+
+              <!-- Episodio disponible -->
+              <a href="episodio-copleras.html" class="carousel-card">
+                <img
+                  src="IMAGENES/HOJA 3/Primer Asamblea.00_13_25_09.Imagen fija007.png"
+                  alt="Copleras"
+                />
+                <div class="card-label">Copleras</div>
+              </a>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/HOJA 3/4M - VIDEO.00_11_36_08.Imagen fija022.png"
+                  alt="Cultura Africana"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">
+                  <span class="card-sublabel">Cultura</span>
+                  Africana
+                </div>
+              </div>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/HOJA 3/MAH01999.00_06_52_29.Imagen fija005.png"
+                  alt="Teatro"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Teatro</div>
+              </div>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/HOJA 3/MAH-1.png"
+                  alt="Happening"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Happening</div>
+              </div>
+
+              <!-- Próximamente -->
+              <div class="carousel-card carousel-card--disabled">
+                <img
+                  src="IMAGENES/NANI 2.png"
+                  alt="Audiovisual"
+                />
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Audiovisual</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Murga</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Poesía</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Danza</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Muralismo</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Circo</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Fotografía</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Instalación</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Performance</div>
+              </div>
+
+              <div class="carousel-card carousel-card--disabled">
+                <span class="card-badge">Próximamente</span>
+                <div class="card-label">Narrativa</div>
+              </div>
+
+            </div>
+
+            <!-- Flechas laterales absolutas -->
+            <button class="carousel-btn" data-carousel="serie-carousel" data-dir="-1" aria-label="Anterior">‹</button>
+            <button class="carousel-btn" data-carousel="serie-carousel" data-dir="1" aria-label="Siguiente">›</button>
+          </div>
+
+          <!-- Dots de posición -->
+          <div class="carousel-dots" id="serie-dots"></div>
+
+          <!-- Descripción -->
+          <p class="section-description">
+            La serie reúne testimonios de artistas que hicieron del arte un acto de resistencia
+            durante el Atlanticazo. A través de entrevistas sensibles, recorre voces y cuerpos de
+            diversas disciplinas que construyeron una respuesta estética y política frente al
+            extractivismo. Más que explicar, busca captar el pulso común de esa lucha: cada episodio
+            es una ola de memoria y creación, una cartografía viva del artivismo.
+          </p>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Botones sociales flotantes -->
+    <div class="social-floating">
+      <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
+        <img src="IMAGENES/HOJA 1/INSTA.png" alt="Instagram" />
+      </a>
+      <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
+        <img src="IMAGENES/HOJA 1/Sin título-1.png" alt="Facebook" />
+      </a>
+      <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">
+        <img src="IMAGENES/HOJA 1/TIK TOK.png" alt="TikTok" />
+      </a>
+      <a href="#" target="_blank" rel="noopener" aria-label="No al Extractivismo">
+        <img src="IMAGENES/HOJA 1/images.png" alt="No al extractivismo" />
+      </a>
+    </div>
+
+  </main>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
