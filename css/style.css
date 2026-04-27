@@ -143,9 +143,8 @@ img {
   top: 30px;
   right: 90px; /* desplazado para no solapar los botones flotantes */
   z-index: 10;
-  text-align: center;
+  display: block;
   text-decoration: none;
-  color: var(--color-white);
   transition: opacity var(--transition);
 }
 
@@ -153,40 +152,10 @@ img {
   opacity: 0.8;
 }
 
-.logo-corner .label {
-  font-family: var(--font-body);
-  font-size: 0.55rem;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--color-white);
-  margin-bottom: 2px;
-}
-
-.logo-corner .title-stack {
-  font-family: var(--font-title);
-  line-height: 0.88;
-}
-
-.logo-corner .title-stack .line1 {
-  font-size: 2.2rem;
-  letter-spacing: 0.03em;
-}
-
-.logo-corner .title-stack .line2 {
-  font-size: 2.2rem;
-  letter-spacing: 0.03em;
-}
-
-.logo-corner .title-stack .italic {
-  font-style: italic;
-}
-
-.logo-corner .subtitle {
-  font-family: var(--font-body);
-  font-size: 0.5rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  margin-top: 4px;
+.logo-corner img {
+  width: clamp(140px, 14vw, 200px);
+  height: auto;
+  display: block;
 }
 
 /* ============================================
@@ -213,38 +182,10 @@ img {
   align-items: flex-start;
 }
 
-.home__label {
-  font-family: var(--font-body);
-  font-size: 0.8rem;
-  font-weight: 600;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  margin-bottom: 12px;
-}
-
-.home__title {
-  font-family: var(--font-title);
-  line-height: 0.88;
-  margin-bottom: 20px;
-}
-
-.home__title .line-big {
-  font-size: clamp(4rem, 8vw, 8rem);
+.home__logo {
+  width: clamp(280px, 38vw, 560px);
+  height: auto;
   display: block;
-}
-
-.home__title .line-italic {
-  font-size: clamp(4rem, 8vw, 8rem);
-  font-style: italic;
-  display: block;
-}
-
-.home__subtitle {
-  font-family: var(--font-body);
-  font-size: clamp(0.7rem, 1.2vw, 1rem);
-  font-weight: 500;
-  letter-spacing: 0.25em;
-  text-transform: uppercase;
 }
 
 .home__right {
@@ -324,6 +265,8 @@ img {
   flex: 1;
   display: flex;
   flex-direction: column;
+  /* breathing room horizontal contra los bordes del viewport */
+  padding: 0 clamp(12px, 3vw, 48px);
 }
 
 .about__top {
@@ -334,27 +277,36 @@ img {
 
 .about__location {
   font-family: var(--font-title);
-  font-size: clamp(1.5rem, 3vw, 2.5rem);
+  font-size: clamp(1.6rem, 3.2vw, 2.8rem);
   letter-spacing: 0.08em;
+}
+
+/* Wrapper del bloque inferior: ocupa el tercio inferior de la pantalla */
+.about__lower {
+  margin-top: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  min-height: 33vh;
+  padding: 4vh 0 3vh 0;
+  gap: 28px;
 }
 
 .about__nav {
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  margin-top: auto;
-  padding-top: 40px;
+  gap: 16px;
 }
 
 .about__nav-link {
   font-family: var(--font-body);
-  font-size: clamp(0.9rem, 1.8vw, 1.3rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
   font-weight: 700;
   letter-spacing: 0.15em;
   text-transform: uppercase;
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   transition: opacity var(--transition);
 }
 
@@ -364,21 +316,34 @@ img {
 
 .about__bottom {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 40px;
-  margin-top: 30px;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 48px;
   align-items: flex-end;
 }
 
 .about__description {
   font-family: var(--font-body);
-  font-size: clamp(0.7rem, 1.1vw, 0.9rem);
-  line-height: 1.65;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.6;
   font-weight: 400;
+  max-width: 60ch;
 }
 
 .about__logo {
-  text-align: right;
+  display: flex;
+  justify-content: flex-end;
+  text-decoration: none;
+  transition: opacity var(--transition);
+}
+
+.about__logo:hover {
+  opacity: 0.8;
+}
+
+.about__logo img {
+  width: clamp(220px, 30vw, 360px);
+  height: auto;
+  display: block;
 }
 
 /* ============================================
@@ -409,7 +374,7 @@ img {
 
 .section-index__sub-link {
   font-family: var(--font-body);
-  font-size: clamp(0.75rem, 1.2vw, 0.95rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
   font-weight: 600;
   letter-spacing: 0.12em;
   text-transform: uppercase;
@@ -447,9 +412,10 @@ img {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Card: tamaño responsivo con clamp */
+/* Card — mobile-first: ancho clampeado, varias cards visibles
+   En tablet+ se sobreescribe para que entren exactamente 6 (ver min-width:600px) */
 .carousel-card {
-  flex: 0 0 clamp(140px, 18vw, 220px);
+  flex: 0 0 clamp(140px, 28vw, 200px);
   height: clamp(200px, 38vh, 380px);
   border-radius: 16px;
   overflow: hidden;
@@ -458,6 +424,23 @@ img {
   transition: transform var(--transition), opacity var(--transition), box-shadow var(--transition);
   text-decoration: none;
   color: var(--color-white);
+}
+
+/* Tablet (600px – 1279px): entran exactamente 3 cards en el ancho visible.
+   En esos rangos 6 quedaban demasiado chicas. */
+@media (min-width: 600px) {
+  .carousel-card {
+    flex-basis: calc((100% - 2 * clamp(10px, 1.5vw, 18px)) / 3);
+  }
+}
+
+/* Desktop (≥1280px): la card sigue creciendo y entran exactamente 6.
+   100% es el ancho del .carousel-track (wrapper minus su padding lateral),
+   restamos los 5 gaps entre las 6 cards y dividimos. */
+@media (min-width: 1280px) {
+  .carousel-card {
+    flex-basis: calc((100% - 5 * clamp(10px, 1.5vw, 18px)) / 6);
+  }
 }
 
 .carousel-card:hover {
@@ -578,10 +561,10 @@ img {
 .section-description {
   margin-top: 18px;
   font-family: var(--font-body);
-  font-size: clamp(0.65rem, 1vw, 0.82rem);
-  line-height: 1.7;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.6;
   text-align: center;
-  max-width: 680px;
+  max-width: 760px;
   margin-left: auto;
   margin-right: auto;
   flex-shrink: 0;
@@ -723,7 +706,7 @@ img {
 
 .archive-detail__nav-link {
   font-family: var(--font-body);
-  font-size: 0.85rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -806,7 +789,7 @@ img {
 
 .bottom-nav a {
   font-family: var(--font-body);
-  font-size: 0.8rem;
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -819,7 +802,6 @@ img {
 .bottom-nav a:hover { opacity: 0.7; }
 
 .bottom-nav .next-ep {
-  font-size: 0.9rem;
   font-weight: 700;
 }
 
@@ -857,9 +839,19 @@ img {
     align-items: center;
   }
 
+  .about__lower {
+    min-height: 40vh;
+    padding: 3vh 0 2vh 0;
+    gap: 20px;
+  }
+
   .about__bottom {
     grid-template-columns: 1fr;
     gap: 20px;
+  }
+
+  .about__description {
+    font-size: clamp(0.95rem, 4vw, 1.2rem);
   }
 
   .episode__inner {
@@ -875,9 +867,8 @@ img {
     right: 70px;
   }
 
-  .logo-corner .title-stack .line1,
-  .logo-corner .title-stack .line2 {
-    font-size: 1.4rem;
+  .logo-corner img {
+    width: clamp(110px, 22vw, 150px);
   }
 
   .bottom-nav {
@@ -903,9 +894,8 @@ img {
   }
 
 
-  .home__title .line-big,
-  .home__title .line-italic {
-    font-size: clamp(3rem, 13vw, 5rem);
+  .home__logo {
+    width: clamp(220px, 70vw, 360px);
   }
 
   /* En mobile con bottom-nav, ocultar los flotantes sociales para evitar conflictos */

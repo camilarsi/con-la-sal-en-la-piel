@@ -13,17 +13,15 @@
     <!-- Fondo fotográfico -->
     <div
       class="screen__bg screen__bg--dark"
-      style="background-image: url('IMAGENES/HOJA 4/4M - VIDEO.00_22_09_04.Imagen fija018.png');"
+      style="background-image: url('assets/backgrounds/archivo-vivo.png');"
     ></div>
 
     <!-- Logo esquina superior derecha — clickeable al home -->
     <a href="index.html" class="logo-corner" aria-label="Volver al inicio">
-      <p class="label">Web Doc Interactivo</p>
-      <div class="title-stack">
-        <span class="line1">CON LA <span style="font-size:1.15em;">SAL</span></span><br>
-        <span class="line2">EN LA <span class="italic">PIEL</span></span>
-      </div>
-      <p class="subtitle">Artivismo en el Atlanticazo</p>
+      <img
+        src="assets/branding/con-la-sal-en-la-piel-logo.png"
+        alt="Con la Sal en la Piel — Web Doc Interactivo — Artivismo en el Atlanticazo"
+      />
     </a>
 
     <!-- Contenido principal -->
@@ -32,7 +30,7 @@
 
         <!-- Header: título + links secundarios -->
         <div class="section-index__header">
-          <h2 class="section-index__label">Archivo Vivo</h2>
+          <h2 class="section-index__label">Archivo<br>Vivo</h2>
           <div style="display:flex; flex-direction:column; gap:6px; align-self:flex-end;">
             <a href="serie.html" class="section-index__sub-link">
               Serie <span>›</span>
@@ -46,14 +44,14 @@
         <!-- Área del carrusel -->
         <div class="section-index__carousel-area">
 
-          <!-- Carrusel de categorías -->
+          <!-- Carrusel de categorías — lista replicada 10x vía JS para sensación infinita -->
           <div class="carousel-wrapper">
-            <div class="carousel-track" id="archivo-carousel">
+            <div class="carousel-track" id="archivo-carousel" data-replicate="10">
 
               <!-- Categoría disponible -->
               <a href="archivo-vivo-candombe.html" class="carousel-card">
                 <img
-                  src="IMAGENES/HOJA 3/Primer Asamblea.01_32_23_22.Imagen fija045.png"
+                  src="assets/series/candombe.png"
                   alt="Candombe"
                 />
                 <div class="card-label">Candombe</div>
@@ -62,7 +60,7 @@
               <!-- Próximamente -->
               <div class="carousel-card carousel-card--disabled">
                 <img
-                  src="IMAGENES/HOJA 4/Primer Asamblea.00_17_57_18.Imagen fija006.png"
+                  src="assets/archivo-vivo/copleras.png"
                   alt="Copleras"
                 />
                 <span class="card-badge">Próximamente</span>
@@ -72,7 +70,7 @@
               <!-- Próximamente -->
               <div class="carousel-card carousel-card--disabled">
                 <img
-                  src="IMAGENES/HOJA 4/4M - VIDEO.00_22_09_04.Imagen fija018.png"
+                  src="assets/backgrounds/archivo-vivo.png"
                   alt="Cultura Africana"
                 />
                 <span class="card-badge">Próximamente</span>
@@ -85,7 +83,7 @@
               <!-- Próximamente -->
               <div class="carousel-card carousel-card--disabled">
                 <img
-                  src="IMAGENES/HOJA 4/4J - TOTAL CRUDO.00_04_50_09.Imagen fija001.png"
+                  src="assets/archivo-vivo/teatro.png"
                   alt="Teatro"
                 />
                 <span class="card-badge">Próximamente</span>
@@ -95,7 +93,7 @@
               <!-- Próximamente -->
               <div class="carousel-card carousel-card--disabled">
                 <img
-                  src="IMAGENES/HOJA 4/4J - TOTAL CRUDO.00_20_21_06.Imagen fija005.png"
+                  src="assets/archivo-vivo/happening.png"
                   alt="Happening"
                 />
                 <span class="card-badge">Próximamente</span>
@@ -105,56 +103,11 @@
               <!-- Próximamente -->
               <div class="carousel-card carousel-card--disabled">
                 <img
-                  src="IMAGENES/NANI 2.png"
+                  src="assets/series/audiovisual.png"
                   alt="Audiovisual"
                 />
                 <span class="card-badge">Próximamente</span>
                 <div class="card-label">Audiovisual</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Murga</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Poesía</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Danza</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Muralismo</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Circo</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Fotografía</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Instalación</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Performance</div>
-              </div>
-
-              <div class="carousel-card carousel-card--disabled">
-                <span class="card-badge">Próximamente</span>
-                <div class="card-label">Narrativa</div>
               </div>
 
             </div>
@@ -183,16 +136,16 @@
     <!-- Botones sociales flotantes -->
     <div class="social-floating">
       <a href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
-        <img src="IMAGENES/HOJA 1/INSTA.png" alt="Instagram" />
+        <img src="assets/social/instagram.png" alt="Instagram" />
       </a>
       <a href="https://www.facebook.com/" target="_blank" rel="noopener" aria-label="Facebook">
-        <img src="IMAGENES/HOJA 1/Sin título-1.png" alt="Facebook" />
+        <img src="assets/social/facebook.png" alt="Facebook" />
       </a>
       <a href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">
-        <img src="IMAGENES/HOJA 1/TIK TOK.png" alt="TikTok" />
+        <img src="assets/social/tiktok.png" alt="TikTok" />
       </a>
       <a href="#" target="_blank" rel="noopener" aria-label="No al Extractivismo">
-        <img src="IMAGENES/HOJA 1/images.png" alt="No al extractivismo" />
+        <img src="assets/social/no-extractivismo.png" alt="No al extractivismo" />
       </a>
     </div>
 
