@@ -12,11 +12,11 @@
 
     <!-- Fondo fotográfico -->
     <div
-      class="screen__bg"
+      class="screen__bg screen__bg--dark"
       style="background-image: url('assets/backgrounds/archivo-candombe.png'); background-position: center top;"
     ></div>
 
-    <!-- Logo esquina superior derecha — clickeable al home -->
+    <!-- Logo esquina superior derecha -->
     <a href="index.html" class="logo-corner" aria-label="Volver al inicio">
       <img
         src="assets/branding/con-la-sal-en-la-piel-logo.png"
@@ -28,10 +28,10 @@
     <div class="screen__content">
       <div class="archive-detail__inner">
 
-        <!-- Columna izquierda: navegación de categoría -->
-        <div class="archive-detail__left">
-          <span class="archive-detail__section">Archivo Vivo</span>
-          <h2 class="archive-detail__cat">Candombe</h2>
+        <!-- Sidebar izquierdo: título + nav de la categoría -->
+        <aside class="archive-detail__left">
+          <h2 class="archive-detail__section">Archivo Vivo</h2>
+          <p class="archive-detail__cat">Candombe</p>
           <nav class="archive-detail__nav">
             <a href="#fotografia" class="archive-detail__nav-link">
               Fotografía <span>›</span>
@@ -43,37 +43,38 @@
               Crear Categoría <span>›</span>
             </a>
           </nav>
-        </div>
+        </aside>
 
-        <!-- Columna derecha: galería -->
-        <div class="archive-detail__right">
+        <!-- Columna principal: visualizador grande arriba, carrusel debajo -->
+        <div class="archive-detail__main">
 
-          <!-- Imagen destacada -->
-          <div class="archive-detail__featured" id="fotografia">
+          <!-- Visualizador (imagen destacada grande) -->
+          <div class="archive-detail__featured">
             <img
-              src="assets/archivo-vivo/copleras.png"
-              alt="Candombe — Archivo Vivo"
               id="featured-img"
+              src="assets/archivo-vivo-candombe/thumb-1.png"
+              alt="Candombe — Archivo Vivo"
             />
           </div>
 
-          <!-- Tira de thumbnails -->
-          <div class="archive-detail__thumbs" id="videos">
-            <div class="archive-detail__thumb" onclick="setFeatured('assets/archivo-vivo-candombe/thumb-1.png')">
-              <img src="assets/archivo-vivo-candombe/thumb-1.png" alt="Registro 1" />
+          <!-- Carrusel inferior: thumbs navegables con flechas -->
+          <div class="archive-gallery" id="archivo-candombe-gallery">
+            <button class="archive-gallery__btn" data-dir="-1" aria-label="Anterior">‹</button>
+            <div class="archive-gallery__track">
+              <button type="button" class="archive-gallery__thumb is-active" aria-label="Registro 1">
+                <img src="assets/archivo-vivo-candombe/thumb-1.png" alt="" />
+              </button>
+              <button type="button" class="archive-gallery__thumb" aria-label="Registro 2">
+                <img src="assets/archivo-vivo-candombe/thumb-2.png" alt="" />
+              </button>
+              <button type="button" class="archive-gallery__thumb" aria-label="Registro 3">
+                <img src="assets/archivo-vivo-candombe/thumb-3.png" alt="" />
+              </button>
+              <button type="button" class="archive-gallery__thumb" aria-label="Registro 4">
+                <img src="assets/archivo-vivo-candombe/thumb-4.png" alt="" />
+              </button>
             </div>
-            <div class="archive-detail__thumb" onclick="setFeatured('assets/archivo-vivo-candombe/thumb-2.png')">
-              <img src="assets/archivo-vivo-candombe/thumb-2.png" alt="Registro 2" />
-            </div>
-            <div class="archive-detail__thumb" onclick="setFeatured('assets/archivo-vivo-candombe/thumb-3.png')">
-              <img src="assets/archivo-vivo-candombe/thumb-3.png" alt="Registro 3" />
-            </div>
-            <div class="archive-detail__thumb" onclick="setFeatured('assets/archivo-vivo-candombe/thumb-4.png')">
-              <img src="assets/archivo-vivo-candombe/thumb-4.png" alt="Registro 4" />
-            </div>
-            <div class="archive-detail__thumb" onclick="setFeatured('assets/archivo-vivo-candombe/thumb-5.png')">
-              <img src="assets/archivo-vivo-candombe/thumb-5.png" alt="Registro 5" />
-            </div>
+            <button class="archive-gallery__btn" data-dir="1" aria-label="Siguiente">›</button>
           </div>
 
         </div>
@@ -108,16 +109,5 @@
   </main>
 
   <script src="js/main.js"></script>
-  <script>
-    function setFeatured(src) {
-      var img = document.getElementById('featured-img');
-      img.style.opacity = '0';
-      setTimeout(function() {
-        img.src = src;
-        img.style.transition = 'opacity 0.3s ease';
-        img.style.opacity = '1';
-      }, 200);
-    }
-  </script>
 </body>
 </html>

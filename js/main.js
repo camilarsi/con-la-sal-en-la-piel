@@ -202,4 +202,66 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   });
 
+  /* ─────────────────────────────────────────
+     ARCHIVE GALLERY (páginas de archivo-vivo por disciplina)
+     - Click en thumb → marca activo + actualiza featured-img
+     - Click en ‹/› → avanza/retrocede el activo (con wrap)
+     - El thumb activo se centra automáticamente en el strip
+  ───────────────────────────────────────── */
+
+  document.querySelectorAll('.archive-gallery').forEach(gallery => {
+    const track   = gallery.querySelector('.archive-gallery__track');
+    const thumbs  = Array.from(gallery.querySelectorAll('.archive-gallery__thumb'));
+    const btnPrev = gallery.querySelector('.archive-gallery__btn[data-dir="-1"]');
+    const btnNext = gallery.querySelector('.archive-gallery__btn[data-dir="1"]');
+
+    // El featured-img debería estar en la misma página
+    const featuredImg = document.getElementById('featured-img');
+
+    if (!thumbs.length) return;
+
+    let activeIdx = thumbs.findIndex(t => t.classList.contains('is-active'));
+    if (activeIdx < 0) activeIdx = 0;
+
+    function centerActiveThumb() {
+      if (!track) return;
+      const thumb = thumbs[activeIdx];
+      const target = thumb.offsetLeft - (track.clientWidth - thumb.clientWidth) / 2;
+      track.scrollTo({ left: Math.max(0, target), behavior: 'smooth' });
+    }
+
+    function setActive(idx, animate = true) {
+      // wrap circular
+      activeIdx = ((idx % thumbs.length) + thumbs.length) % thumbs.length;
+      thumbs.forEach((t, i) => t.classList.toggle('is-active', i === activeIdx));
+
+      // sincronizar featured-img
+      if (featuredImg) {
+        const img = thumbs[activeIdx].querySelector('img');
+        const newSrc = img && img.getAttribute('src');
+        if (newSrc && newSrc !== featuredImg.getAttribute('src')) {
+          if (animate) {
+            featuredImg.style.transition = 'opacity 0.3s ease';
+            featuredImg.style.opacity = '0';
+            setTimeout(() => {
+              featuredImg.src = newSrc;
+              featuredImg.style.opacity = '1';
+            }, 200);
+          } else {
+            featuredImg.src = newSrc;
+          }
+        }
+      }
+
+      centerActiveThumb();
+    }
+
+    thumbs.forEach((thumb, idx) => {
+      thumb.addEventListener('click', () => setActive(idx));
+    });
+
+    if (btnPrev) btnPrev.addEventListener('click', () => setActive(activeIdx - 1));
+    if (btnNext) btnNext.addEventListener('click', () => setActive(activeIdx + 1));
+  });
+
 });

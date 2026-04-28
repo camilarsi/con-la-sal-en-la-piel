@@ -672,41 +672,58 @@ img {
 .archive-detail__inner {
   flex: 1;
   display: grid;
-  grid-template-columns: 220px 1fr;
-  gap: 40px;
-  align-items: start;
-  padding-top: 20px;
+  /* Sidebar y reserva del logo angostas, columna central ancha
+     para que el visualizador y el carrusel respiren. */
+  grid-template-columns: minmax(150px, 1fr) 4fr minmax(200px, 1fr);
+  gap: clamp(20px, 3vw, 44px);
+  align-items: stretch;
+  min-height: 0;
+  padding: 10px 0 20px 0;
+}
+
+/* Columna principal (derecha): visualizador grande arriba + carrusel chico abajo
+   Sin `gap`: el margen automático del carrusel reparte el espacio libre
+   en partes iguales arriba y abajo (centrado vertical en el remanente). */
+.archive-detail__main {
+  display: flex;
+  flex-direction: column;
+  min-height: 0;
 }
 
 .archive-detail__left {
   display: flex;
   flex-direction: column;
-  gap: 14px;
+  align-self: start;
+  padding-top: 8px;
+  gap: 6px;
 }
 
 .archive-detail__section {
   font-family: var(--font-title);
-  font-size: 1.4rem;
-  letter-spacing: 0.06em;
+  font-size: clamp(1.9rem, 3.2vw, 3.4rem);
+  letter-spacing: 0.04em;
+  line-height: 0.92;
+  text-align: left;
 }
 
 .archive-detail__cat {
   font-family: var(--font-title);
-  font-size: 2.2rem;
-  letter-spacing: 0.04em;
+  font-size: clamp(1.2rem, 1.8vw, 1.7rem);
+  letter-spacing: 0.08em;
   line-height: 1;
-  margin-bottom: 10px;
+  text-align: left;
+  margin-bottom: 24px;
 }
 
 .archive-detail__nav {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 14px;
 }
 
 .archive-detail__nav-link {
   font-family: var(--font-body);
-  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-size: clamp(0.78rem, 1.1vw, 1rem);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -718,49 +735,115 @@ img {
 
 .archive-detail__nav-link:hover { opacity: 0.72; }
 
-.archive-detail__right {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
+/* Visualizador: ocupa los DOS TERCIOS SUPERIORES del viewport.
+   Altura fija en vh para que el carrusel + bottom-nav vivan en el tercio inferior. */
 .archive-detail__featured {
-  border-radius: 16px;
+  flex: 0 0 auto;
+  width: 100%;
+  height: 64vh;          /* ~2/3 de la pantalla menos paddings/gaps del header */
+  min-height: 0;
+  border-radius: 24px;
   overflow: hidden;
-  max-height: 320px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .archive-detail__featured img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
+  transition: opacity 0.3s ease;
 }
 
-.archive-detail__thumbs {
+/* ============================================
+   GALERÍA INFERIOR — carrusel de thumbs con flechas
+   ============================================ */
+.archive-gallery {
+  position: relative;
+  width: 100%;
   display: flex;
-  gap: 12px;
-  overflow-x: auto;
-  padding-bottom: 6px;
+  align-items: center;
+  gap: 18px;
+  flex: 0 0 auto;
+  /* Vive en el tercio inferior junto con el bottom-nav.
+     ~33vh disponible − ~100px del bottom-nav = ~ tope de 13vh para la galería.
+     Las thumbs heredan este alto y derivan su ancho del aspect-ratio. */
+  height: clamp(70px, 13vh, 130px);
+  /* Centrado vertical en el espacio libre debajo del visualizador
+     (los margin auto top/bottom dividen el remanente en partes iguales). */
+  margin: auto 0;
 }
 
-.archive-detail__thumbs::-webkit-scrollbar { height: 4px; }
-.archive-detail__thumbs::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.3); border-radius: 2px; }
+.archive-gallery__btn {
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 50%;
+  color: white;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  transition: background var(--transition), transform var(--transition), border-color var(--transition);
+}
 
-.archive-detail__thumb {
-  flex: 0 0 100px;
-  height: 70px;
-  border-radius: 10px;
+.archive-gallery__btn:hover {
+  background: rgba(255, 255, 255, 0.22);
+  border-color: rgba(255, 255, 255, 0.5);
+  transform: scale(1.08);
+}
+
+.archive-gallery__track {
+  flex: 1;
+  display: flex;
+  gap: 14px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  padding: 6px 2px;
+}
+
+.archive-gallery__track::-webkit-scrollbar {
+  display: none;
+}
+
+.archive-gallery__thumb {
+  flex: 0 0 auto;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  border-radius: 14px;
   overflow: hidden;
   cursor: pointer;
-  transition: opacity var(--transition);
+  background: transparent;
+  border: 3px solid transparent;
+  padding: 0;
+  transition: border-color var(--transition), transform var(--transition), opacity var(--transition);
+  opacity: 0.78;
 }
 
-.archive-detail__thumb:hover { opacity: 0.8; }
+.archive-gallery__thumb:hover {
+  transform: scale(1.04);
+  opacity: 1;
+}
 
-.archive-detail__thumb img {
+.archive-gallery__thumb.is-active {
+  border-color: rgba(255, 255, 255, 0.95);
+  opacity: 1;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.45);
+}
+
+.archive-gallery__thumb img {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  display: block;
 }
 
 /* ============================================
@@ -789,7 +872,7 @@ img {
 
 .bottom-nav a {
   font-family: var(--font-body);
-  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
+  font-size: clamp(0.78rem, 1.1vw, 1rem);
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -860,6 +943,16 @@ img {
 
   .archive-detail__inner {
     grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .archive-detail__cat {
+    text-align: left;
+    margin-bottom: 14px;
+  }
+
+  .archive-gallery {
+    height: clamp(70px, 12vh, 110px);
   }
 
   .logo-corner {
@@ -920,5 +1013,16 @@ img {
 
   .carousel-wrapper {
     padding: 0 40px;
+  }
+
+  .archive-gallery {
+    gap: 10px;
+    height: clamp(60px, 10vh, 90px);
+  }
+
+  .archive-gallery__btn {
+    width: 36px;
+    height: 36px;
+    font-size: 1.2rem;
   }
 }
