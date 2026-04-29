@@ -427,11 +427,12 @@ img {
   transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
 }
 
-/* Card — mobile-first: ancho clampeado, varias cards visibles
-   En tablet+ se sobreescribe para que entren exactamente 6 (ver min-width:600px) */
+/* Card — mobile-first: ancho clampeado, varias cards visibles.
+   La altura sale del aspect-ratio de las imágenes (244×454) para que el
+   card sea un rectángulo parado, no cuadrado. */
 .carousel-card {
   flex: 0 0 clamp(140px, 28vw, 200px);
-  height: clamp(200px, 38vh, 380px);
+  aspect-ratio: 244 / 454;
   border-radius: 16px;
   overflow: hidden;
   position: relative;
@@ -471,25 +472,35 @@ img {
 
 .carousel-card .card-label {
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  padding: 14px 12px 10px;
-  background: linear-gradient(transparent, rgba(0,0,0,0.85));
+  bottom: 8px;
+  left: 8px;
+  right: 8px;
+  padding: 28px 30px;              /* simétrico vertical para centrar visualmente */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  color: var(--color-bg);
+  border-radius: 999px;            /* pill */
   font-family: var(--font-title);
-  font-size: clamp(0.9rem, 1.4vw, 1.2rem);
+  font-size: clamp(1.4rem, 2.2vw, 1.9rem);
   letter-spacing: 0.06em;
   text-align: center;
+  line-height: 1.1;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
 }
 
 .carousel-card .card-sublabel {
   font-family: var(--font-body);
-  font-size: 0.55rem;
-  letter-spacing: 0.1em;
+  font-size: 0.55em;               /* proporcional al label */
+  letter-spacing: 0.12em;
   text-transform: uppercase;
   text-align: center;
   display: block;
-  opacity: 0.8;
+  color: inherit;
+  opacity: 0.7;
+  margin-bottom: 1px;
 }
 
 /* Card deshabilitada — episodios no disponibles */
