@@ -475,7 +475,7 @@ img {
   bottom: 8px;
   left: 8px;
   right: 8px;
-  padding: 28px 30px;              /* simétrico vertical para centrar visualmente */
+  padding: 18px 30px;              /* simétrico vertical para centrar visualmente */
   display: flex;
   flex-direction: column;
   align-items: center;
