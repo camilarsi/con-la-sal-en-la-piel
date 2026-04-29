@@ -141,7 +141,9 @@ img {
 .logo-corner {
   position: absolute;
   top: 30px;
-  right: 90px; /* desplazado para no solapar los botones flotantes */
+  /* Alineado al borde derecho — mismo offset que .social-floating.
+     No hay conflicto vertical: el logo vive en top, los flotantes en top:50%. */
+  right: 20px;
   z-index: 10;
   display: block;
   text-decoration: none;
@@ -152,8 +154,21 @@ img {
   opacity: 0.8;
 }
 
+/* En las páginas de episodio el logo va a la IZQUIERDA (misma altura) — esa
+   columna queda más despejada porque la meta+descripción del episodio respira
+   y el player ocupa el costado derecho. El left coincide con el padding-left
+   de .screen__content para alinearlo con el título y el texto descriptivo. */
+.is-episode .logo-corner {
+  right: auto;
+  left: 60px;
+}
+
 .logo-corner img {
-  width: clamp(140px, 14vw, 200px);
+  /* Tamaño responsive: la mín(vw, vh) hace que el logo achique cuando la
+     pantalla es angosta o baja (laptops 1280×600, tablets en landscape, etc.),
+     evitando que se superponga al contenido del layout. El piso bajo (90px)
+     permite achicar lo suficiente cuando la altura es muy escasa. */
+  width: clamp(90px, min(14vw, 18vh), 200px);
   height: auto;
   display: block;
 }
@@ -603,8 +618,8 @@ img {
 
 .episode__description {
   font-family: var(--font-body);
-  font-size: clamp(0.65rem, 1vw, 0.8rem);
-  line-height: 1.7;
+  font-size: clamp(1rem, 1.5vw, 1.35rem);
+  line-height: 1.6;
 }
 
 .episode__player {
@@ -681,20 +696,20 @@ img {
   padding: 10px 0 20px 0;
 }
 
-/* Columna principal (derecha): visualizador grande arriba + carrusel chico abajo
-   Sin `gap`: el margen automático del carrusel reparte el espacio libre
-   en partes iguales arriba y abajo (centrado vertical en el remanente). */
+/* Columna principal (derecha): visualizador grande + carrusel chico debajo,
+   centrados verticalmente como grupo. */
 .archive-detail__main {
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  gap: clamp(14px, 2vh, 28px);
   min-height: 0;
 }
 
 .archive-detail__left {
   display: flex;
   flex-direction: column;
-  align-self: start;
-  padding-top: 8px;
+  justify-content: center;
   gap: 6px;
 }
 
@@ -723,7 +738,7 @@ img {
 
 .archive-detail__nav-link {
   font-family: var(--font-body);
-  font-size: clamp(0.78rem, 1.1vw, 1rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
@@ -735,24 +750,31 @@ img {
 
 .archive-detail__nav-link:hover { opacity: 0.72; }
 
-/* Visualizador: ocupa los DOS TERCIOS SUPERIORES del viewport.
-   Altura fija en vh para que el carrusel + bottom-nav vivan en el tercio inferior. */
+/* Visualizador: TOMA la proporción y el tamaño natural de la imagen.
+   - Si la imagen excede el ancho de la columna o el alto de 64vh, se
+     achica proporcionalmente para entrar en el layout.
+   - Nunca se agranda más allá de su resolución natural.
+   El wrapper sólo centra horizontalmente; el styling visual (border-radius,
+   sombra) va en la imagen para que el frame siga la silueta exacta. */
 .archive-detail__featured {
   flex: 0 0 auto;
-  width: 100%;
-  height: 64vh;          /* ~2/3 de la pantalla menos paddings/gaps del header */
-  min-height: 0;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
-  background: rgba(0, 0, 0, 0.3);
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  max-width: 100%;
+  max-height: 64vh;
 }
 
 .archive-detail__featured img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
   display: block;
+  /* Tamaño natural; cap por columna y 64vh, sin upscaling */
+  width: auto;
+  height: auto;
+  max-width: 100%;
+  max-height: 64vh;
+  border-radius: 24px;
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.55);
   transition: opacity 0.3s ease;
 }
 
@@ -770,9 +792,6 @@ img {
      ~33vh disponible − ~100px del bottom-nav = ~ tope de 13vh para la galería.
      Las thumbs heredan este alto y derivan su ancho del aspect-ratio. */
   height: clamp(70px, 13vh, 130px);
-  /* Centrado vertical en el espacio libre debajo del visualizador
-     (los margin auto top/bottom dividen el remanente en partes iguales). */
-  margin: auto 0;
 }
 
 .archive-gallery__btn {
@@ -801,7 +820,12 @@ img {
 
 .archive-gallery__track {
   flex: 1;
+  /* Estiramos verticalmente para que los thumbs (height: 100%) tengan
+     un padre con altura definida y no caigan a auto = tamaño natural del img */
+  align-self: stretch;
+  height: 100%;
   display: flex;
+  align-items: center;
   gap: 14px;
   overflow-x: auto;
   scroll-behavior: smooth;
@@ -872,7 +896,7 @@ img {
 
 .bottom-nav a {
   font-family: var(--font-body);
-  font-size: clamp(0.78rem, 1.1vw, 1rem);
+  font-size: clamp(1.1rem, 2.2vw, 1.6rem);
   font-weight: 600;
   letter-spacing: 0.15em;
   text-transform: uppercase;
@@ -902,6 +926,27 @@ img {
 /* ============================================
    RESPONSIVE
    ============================================ */
+
+/* La página de archivo-vivo-candombe sólo entra cómoda con su layout
+   multi-columna a partir de ~1650px. Por debajo, el sidebar+visualizador+
+   carrusel se solapan, así que stackeamos en una sola columna (mismo
+   layout que mobile). */
+@media (max-width: 1650px) {
+  .archive-detail__inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .archive-detail__cat {
+    text-align: left;
+    margin-bottom: 14px;
+  }
+
+  .archive-gallery {
+    height: clamp(70px, 12vh, 110px);
+  }
+}
+
 @media (max-width: 900px) {
   .screen__content {
     /* en tablet los botones flotantes son más pequeños, 66px alcanza */
@@ -933,7 +978,10 @@ img {
     gap: 20px;
   }
 
-  .about__description {
+  /* Tamaño unificado de descripciones en mobile */
+  .about__description,
+  .section-description,
+  .episode__description {
     font-size: clamp(0.95rem, 4vw, 1.2rem);
   }
 
@@ -941,27 +989,15 @@ img {
     grid-template-columns: 1fr;
   }
 
-  .archive-detail__inner {
-    grid-template-columns: 1fr;
-    gap: 20px;
-  }
-
-  .archive-detail__cat {
-    text-align: left;
-    margin-bottom: 14px;
-  }
-
-  .archive-gallery {
-    height: clamp(70px, 12vh, 110px);
-  }
-
   .logo-corner {
     top: 16px;
-    right: 70px;
+    /* Alineado con .social-floating (right: 20px en tablet) */
+    right: 20px;
   }
 
   .logo-corner img {
-    width: clamp(110px, 22vw, 150px);
+    /* Misma lógica responsive que en desktop pero con techo más bajo */
+    width: clamp(80px, min(22vw, 18vh), 150px);
   }
 
   .bottom-nav {
@@ -999,6 +1035,19 @@ img {
   .social-floating {
     right: 10px;
     gap: 8px;
+  }
+
+  .logo-corner {
+    /* Alineado con .social-floating (right: 10px en mobile) */
+    right: 10px;
+  }
+
+  /* En mobile el logo de episodio vuelve a la derecha (alineado con
+     .social-floating a right: 10px) — el espacio izquierdo lo aprovecha
+     el contenido stackeado de la columna única. */
+  .is-episode .logo-corner {
+    left: auto;
+    right: 10px;
   }
 
   .social-floating a {
