@@ -32,6 +32,19 @@ html, body {
 a {
   color: inherit;
   text-decoration: none;
+  transition: color var(--transition);
+}
+
+/* Hover unificado para TODOS los textos clickeables: tono azul "iluminación
+   de océano" en versión más clara para mantener legibilidad sobre fondos
+   oscuros. Familia cromática del gradiente principal. */
+a:hover,
+.home__nav-link:hover,
+.about__nav-link:hover,
+.section-index__sub-link:hover,
+.archive-detail__nav-link:hover,
+.bottom-nav a:hover {
+  color: #3A5F8F;
 }
 
 img {
@@ -69,6 +82,16 @@ img {
 
 .screen__bg--dark::after {
   background: var(--color-overlay-deep);
+}
+
+.screen__bg--home::after {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+/* Cuando el bg ya es un gradiente con oscuridad calibrada, no aplicamos
+   overlay encima — sino se aplastan los tonos elegidos. */
+.screen__bg--gradient::after {
+  background: transparent;
 }
 
 /* Animación de entrada */
@@ -228,8 +251,8 @@ img {
   transition: opacity var(--transition);
 }
 
-.home__nav-link:hover {
-  opacity: 0.75;
+.home__nav-link {
+  transition: color var(--transition);
 }
 
 .home__nav-link .arrow {
@@ -325,8 +348,8 @@ img {
   transition: opacity var(--transition);
 }
 
-.about__nav-link:hover {
-  opacity: 0.75;
+.about__nav-link {
+  transition: color var(--transition);
 }
 
 .about__bottom {
@@ -400,7 +423,7 @@ img {
   opacity: 0.75;
 }
 
-.section-index__sub-link:hover { opacity: 1; }
+.section-index__sub-link { transition: color var(--transition); }
 
 /* Área del carrusel: crece para ocupar todo el espacio disponible */
 .section-index__carousel-area {
@@ -715,6 +738,7 @@ img {
   justify-content: center;
   gap: clamp(14px, 2vh, 28px);
   min-height: 0;
+  min-width: 0;
 }
 
 .archive-detail__left {
@@ -759,7 +783,7 @@ img {
   transition: opacity var(--transition);
 }
 
-.archive-detail__nav-link:hover { opacity: 0.72; }
+.archive-detail__nav-link { transition: color var(--transition); }
 
 /* Visualizador: TOMA la proporción y el tamaño natural de la imagen.
    - Si la imagen excede el ancho de la columna o el alto de 64vh, se
@@ -830,7 +854,11 @@ img {
 }
 
 .archive-gallery__track {
-  flex: 1;
+  flex: 1 1 0;
+  /* min-width: 0 es CRÍTICO: sin esto, el flex item no se encoge debajo
+     del ancho de su contenido (10 thumbs) y el overflow-x:auto nunca
+     se activa, tirando la flecha derecha fuera de pantalla. */
+  min-width: 0;
   /* Estiramos verticalmente para que los thumbs (height: 100%) tengan
      un padre con altura definida y no caigan a auto = tamaño natural del img */
   align-self: stretch;
@@ -839,10 +867,14 @@ img {
   align-items: center;
   gap: 14px;
   overflow-x: auto;
+  overscroll-behavior-x: contain;
   scroll-behavior: smooth;
   scrollbar-width: none;
   -ms-overflow-style: none;
   padding: 6px 2px;
+  /* Permitir paneo táctil horizontal sin que el browser robe el gesto */
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
 }
 
 .archive-gallery__track::-webkit-scrollbar {
@@ -917,7 +949,7 @@ img {
   transition: opacity var(--transition);
 }
 
-.bottom-nav a:hover { opacity: 0.7; }
+.bottom-nav a { transition: color var(--transition); }
 
 .bottom-nav .next-ep {
   font-weight: 700;
